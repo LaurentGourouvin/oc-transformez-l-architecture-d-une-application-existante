@@ -9,7 +9,7 @@
 
 ---
 
-### Lancé l'application en local
+### Lancer l'application en local
 
 Plusieurs problématique rencontrés. Les informations du Readme n'était pas complète pour démarrer directement le projet. Il fallait fouiller un peu dans le dossier.
 
