@@ -108,3 +108,13 @@ Ce dossier contient toute la partie VUE de l'application.
 ### :: resources/views/partials
 
 > Ce dossier contient les templates pouvant être implémenter dans toutes les vues.
+
+## Architecture
+
+### Architecture de base du projet
+
+![Base Architecture](../images/old_architecture.png)
+
+### Architecture à prévoir
+
+![Futur Architecture](../images/futur_architecture.png)

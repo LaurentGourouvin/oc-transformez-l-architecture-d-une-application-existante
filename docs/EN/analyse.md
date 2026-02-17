@@ -128,3 +128,13 @@ This directory contains views associated with Livewire components.
 ## :: resources/views/partials
 
 This directory contains reusable view fragments that can be included across multiple views.
+
+## Architecture
+
+### Base Project Architecture
+
+![Base Architecture](../images/old_architecture.png)
+
+### Planned Architecture
+
+![Future Architecture](../images/futur_architecture.png)
