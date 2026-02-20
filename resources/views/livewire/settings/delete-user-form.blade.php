@@ -1,5 +1,7 @@
 <?php
 
+use App\Contracts\AuthServiceInterface;
+use App\Contracts\ProfileServiceInterface;
 use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
@@ -10,13 +12,16 @@ new class extends Component {
     /**
      * Delete the currently authenticated user.
      */
-    public function deleteUser(Logout $logout): void
+    public function deleteUser(ProfileServiceInterface $profileService, AuthServiceInterface $authService): void
     {
         $this->validate([
             'password' => ['required', 'string', 'current_password'],
         ]);
 
-        tap(Auth::user(), $logout(...))->delete();
+        $user = Auth::user();
+
+        $authService->logout();
+        $profileService->deleteProfile($user);
 
         $this->redirect('/', navigate: true);
     }
@@ -44,7 +49,7 @@ new class extends Component {
                 </flux:subheading>
             </div>
 
-            <flux:input wire:model="password" :label="__('Password')" type="password" />
+            <flux:input wire:model="password" :label="__('Password')" type="password"/>
 
             <div class="flex justify-end space-x-2 rtl:space-x-reverse">
                 <flux:modal.close>
