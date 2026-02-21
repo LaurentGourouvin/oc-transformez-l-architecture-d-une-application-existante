@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Contracts\PasswordServiceInterface;
 
 new #[Layout('components.layouts.auth')] class extends Component {
     public string $password = '';
@@ -11,20 +10,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
     /**
      * Confirm the current user's password.
      */
-    public function confirmPassword(): void
+    public function confirmPassword(PasswordServiceInterface $passwordService): void
     {
         $this->validate([
             'password' => ['required', 'string'],
         ]);
 
-        if (! Auth::guard('web')->validate([
-            'email' => Auth::user()->email,
-            'password' => $this->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
-        }
+        $passwordService->confirmPassword($this->password);
 
         session(['auth.password_confirmed_at' => time()]);
 

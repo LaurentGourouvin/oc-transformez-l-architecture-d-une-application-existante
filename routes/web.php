@@ -22,4 +22,4 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/tags', 'dashboard');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
