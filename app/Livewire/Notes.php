@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Contracts\NotesServiceInterface;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use App\Models\Note;
 use App\Models\Tag;
@@ -20,15 +22,10 @@ class Notes extends Component
     ];
     protected $listeners = ['tagCreated' => 'refreshTags'];
 
-    public function mount()
+    public function mount(NotesServiceInterface $notesService)
     {
         $this->tags = Tag::all();
-        $this->loadNotes();
-    }
-
-    public function loadNotes()
-    {
-        $this->notes = Note::with('tag')->where('user_id', Auth::id())->latest()->get();
+        $this->notes = $notesService->loadNotes();
     }
 
     public function refreshTags()
@@ -36,28 +33,24 @@ class Notes extends Component
         $this->tags = \App\Models\Tag::all();
     }
 
-    public function save()
+    public function save(NotesServiceInterface $notesService)
     {
         $this->validate();
 
-        Note::create([
-            'user_id' => Auth::id(),
-            'tag_id' => $this->tag_id,
-            'text' => $this->text,
-        ]);
+        $notesService->createNote($this->tag_id, $this->text);
 
         $this->text = '';
         $this->tag_id = '';
 
-        $this->loadNotes();
+        $this->notes = $notesService->loadNotes();
 
         session()->flash('message', 'Note added.');
     }
 
-    public function delete($noteId)
+    public function delete($noteId, NotesServiceInterface $notesService)
     {
-        Note::where('id', $noteId)->where('user_id', Auth::id())->delete();
-        $this->loadNotes();
+        $notesService->deleteNote($noteId);
+        $this->notes = $notesService->loadNotes();
     }
 
     public function render()
