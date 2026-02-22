@@ -23,6 +23,14 @@ class PasswordService implements PasswordServiceInterface
 
         Log::info('PasswordService::updatePassword', ['user' => Auth::user()->email]);
     }
+    public function updatePasswordApi(string $password, User $user): void
+    {
+        $user->update([
+            'password' => Hash::make($password),
+        ]);
+
+        Log::info('PasswordService::updatePasswordApi', ['user' => $user->email]);
+    }
 
     public function confirmPassword(string $password): void
     {

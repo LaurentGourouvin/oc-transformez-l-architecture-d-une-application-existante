@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Password\PasswordConfirmRequest;
 use App\Http\Requests\Api\Password\PasswordResetLinkRequest;
 use App\Http\Requests\Api\Password\PasswordResetRequest;
+use App\Http\Requests\Api\Password\PasswordUpdateRequest;
 use Illuminate\Support\Facades\Password;
 use App\Http\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -53,5 +54,10 @@ class PasswordController extends Controller
         } catch (\RuntimeException $e) {
             return $this->error($e->getMessage(), 422);
         }
+    }
+
+    public function updatePassword(PasswordUpdateRequest $request): JsonResponse {
+        $this->passwordService->updatePasswordApi($request->password, $request->user());
+        return $this->success(null, 'Password updated successfully');
     }
 }

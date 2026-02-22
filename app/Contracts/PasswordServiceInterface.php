@@ -7,6 +7,8 @@ use App\Models\User;
 interface PasswordServiceInterface
 {
     public function updatePassword(string $password): void;
+    public function updatePasswordApi(string $password, User $user): void;
+
     public function confirmPassword(string $password): void;
     public function confirmPasswordApi(string $password, User $user): void;
 
