@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\PasswordServiceInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,15 @@ class PasswordService implements PasswordServiceInterface
         }
 
         Log::info('PasswordService::confirmPassword', ['user' => Auth::user()->email]);
+    }
+
+    public function confirmPasswordApi(string $password, User $user): void
+    {
+        if (!Hash::check($password, $user->password)) {
+            throw new \RuntimeException(__('auth.password'));
+        }
+
+        Log::info('PasswordService::confirmPasswordApi', ['user' => $user->email]);
     }
 
     public function sendPasswordResetLink(string $email): void
