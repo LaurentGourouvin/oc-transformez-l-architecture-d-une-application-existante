@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\EmailServiceInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -21,5 +22,16 @@ class EmailService implements EmailServiceInterface {
             'status' => Auth::user()->hasVerifiedEmail()
         ]);
         return Auth::user()->hasVerifiedEmail();
+    }
+
+    public function sendEmailVerificationNotificationApi(User $user): void
+    {
+        $user->sendEmailVerificationNotification();
+        Log::info('EmailService::sendEmailVerificationNotificationApi', ['user' => $user->email]);
+    }
+
+    public function hasVerifiedEmailApi(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
     }
 }

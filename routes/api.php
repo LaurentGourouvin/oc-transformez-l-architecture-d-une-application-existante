@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\EmailController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile/me', [ProfileController::class, 'me']);
     Route::put('profile', [ProfileController::class, 'updateProfile']);
     Route::delete('profile', [ProfileController::class, 'deleteProfile']);
+    Route::post('email/verify/send', [EmailController::class, 'sendVerification']);
 });
 
 // Auth Routes
