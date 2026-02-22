@@ -25,5 +25,6 @@ class ProfileService implements ProfileServiceInterface
     public function deleteProfile(User $user): void
     {
         $user->delete();
-        Log::info('ProfileService::deleteProfile', ['user' => $user->email]);    }
+        Log::info('ProfileService::deleteProfile', ['user' => $user->email]);
+    }
 }

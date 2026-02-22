@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PasswordController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 
@@ -10,6 +11,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::post('password/confirm', [PasswordController::class, 'confirmPassword']);
     Route::post('password/update', [PasswordController::class, 'updatePassword']);
+    Route::get('profile/me', [ProfileController::class, 'me']);
+    Route::put('profile', [ProfileController::class, 'updateProfile']);
+    Route::delete('profile', [ProfileController::class, 'deleteProfile']);
 });
 
 // Auth Routes
