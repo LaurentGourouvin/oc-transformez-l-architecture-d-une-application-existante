@@ -83,4 +83,21 @@ class AuthService implements AuthServiceInterface
     {
         return Str::transliterate(Str::lower($email) . '|' . request()->ip());
     }
+
+    public function loginApi(string $email, string $password): User
+    {
+        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
+            throw new \Illuminate\Auth\AuthenticationException('Invalid credentials');
+        }
+
+        return Auth::user();
+    }
+
+    public function registerApi(string $name, string $email, string $password): User {
+        return $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
+    }
 }
