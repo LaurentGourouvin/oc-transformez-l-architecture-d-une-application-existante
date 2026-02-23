@@ -23,11 +23,47 @@ class PasswordController extends Controller
         $this->passwordService = $passwordService;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/password/forgot-password",
+     *     summary="Send password reset link",
+     *     tags={"Password"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email"},
+     *             @OA\Property(property="email", type="string", example="user@example.com")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Reset link sent"),
+     *     @OA\Response(response=422, description="Validation failed")
+     * )
+     */
     public function sendPasswordResetLink (PasswordResetLinkRequest $request) : JsonResponse {
         $this->passwordService->sendPasswordResetLink($request->email);
         return $this->success(null, 'If this email exists, a reset link has been sent');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/password/reset",
+     *     summary="Reset password",
+     *     tags={"Password"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","token","password","password_confirmation"},
+     *             @OA\Property(property="email", type="string", example="user@example.com"),
+     *             @OA\Property(property="token", type="string", example="abc123"),
+     *             @OA\Property(property="password", type="string", example="newpassword"),
+     *             @OA\Property(property="password_confirmation", type="string", example="newpassword")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Password reset successfully"),
+     *     @OA\Response(response=400, description="Invalid token"),
+     *     @OA\Response(response=422, description="Validation failed")
+     * )
+     */
     public function resetPassword(PasswordResetRequest $request): JsonResponse {
         try {
             $status = $this->passwordService->resetPassword(
@@ -46,6 +82,24 @@ class PasswordController extends Controller
             return $this->error($e->getMessage(), 400);
         }    }
 
+    /**
+     * @OA\Post(
+     *     path="/api/password/confirm",
+     *     summary="Confirm password",
+     *     tags={"Password"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"password"},
+     *             @OA\Property(property="password", type="string", example="password")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Password confirmed"),
+     *     @OA\Response(response=422, description="Wrong password"),
+     *     @OA\Response(response=401, description="Unauthenticated")
+     * )
+     */
     public function confirmPassword(PasswordConfirmRequest $request): JsonResponse
     {
         try {
@@ -56,6 +110,26 @@ class PasswordController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/password/update",
+     *     summary="Update password",
+     *     tags={"Password"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"current_password","password","password_confirmation"},
+     *             @OA\Property(property="current_password", type="string", example="oldpassword"),
+     *             @OA\Property(property="password", type="string", example="newpassword"),
+     *             @OA\Property(property="password_confirmation", type="string", example="newpassword")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Password updated successfully"),
+     *     @OA\Response(response=422, description="Validation failed"),
+     *     @OA\Response(response=401, description="Unauthenticated")
+     * )
+     */
     public function updatePassword(PasswordUpdateRequest $request): JsonResponse {
         $this->passwordService->updatePasswordApi($request->password, $request->user());
         return $this->success(null, 'Password updated successfully');

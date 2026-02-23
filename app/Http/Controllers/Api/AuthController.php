@@ -20,6 +20,23 @@ class AuthController extends Controller
     public function __construct(AuthServiceInterface $authService) {
         $this->authService = $authService;
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/auth/login",
+     *     summary="Login",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             required={"email","password"},
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="password", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Login successful"),
+     *     @OA\Response(response=401, description="Invalid credentials")
+     * )
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         try {
@@ -35,6 +52,25 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/auth/register",
+     *     summary="Register",
+     *     tags={"Auth"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name","email","password","password_confirmation"},
+     *             @OA\Property(property="name", type="string", example="John Doe"),
+     *             @OA\Property(property="email", type="string", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", example="password"),
+     *             @OA\Property(property="password_confirmation", type="string", example="password")
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Account created successfully"),
+     *     @OA\Response(response=422, description="Validation failed")
+     * )
+     */
     public function register(RegisterRequest $request) : JsonResponse {
         $user = $this->authService->registerApi($request->name, $request->email, $request->password);
 
@@ -43,6 +79,16 @@ class AuthController extends Controller
         ], 'Registration successful');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/auth/logout",
+     *     summary="Logout",
+     *     tags={"Auth"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(response=200, description="Logged out successfully"),
+     *     @OA\Response(response=401, description="Unauthenticated")
+     * )
+     */
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
