@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\EmailController;
 use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('note', [NoteController::class, 'getNotes']);
     Route::post('note', [NoteController::class, 'createNote']);
     Route::delete('note/{id}', [NoteController::class, 'deleteNote']);
+    Route::get('tag', [TagController::class, 'getAllTags']);
+    Route::post('tag', [TagController::class, 'createTag']);
 });
 
 // Auth Routes
