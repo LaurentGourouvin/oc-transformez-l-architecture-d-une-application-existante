@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "generate:doc" : "php artisan l5-swagger:generate"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.7",

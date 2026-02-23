@@ -1,0 +1,668 @@
+{
+  "info": {
+    "_postman_id": "fd226880-6b73-4fba-9799-baa5ce0ec992",
+    "name": "OC_PROJET_3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20910261"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"gourouvin.laurent@gmail.com\",\n    \"password\": \"13021991\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/auth/logout",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@test.de\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Password",
+      "item": [
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"gourouvin.laurent@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/password/forgot-password",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "password",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"6361cdc71d9f3e15ed14b6d454ddbbb41cb30c9d78c5d9361eaa7067d99680f1\",\n    \"email\": \"gourouvin.laurent@gmail.com\",\n    \"password\": \"13021991\",\n    \"password_confirmation\": \"13021991\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/password/reset",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "password",
+                "reset"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Password Confirm",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "10|412C5hSPT1brEn7IoSONPLqsU1xyGhUAat6O8aJh726d7bc7",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\": \"13021991\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/password/confirm",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "password",
+                "confirm"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "11|kqwZX4lovHbhgXlpSIVIrFSsi1x0TCIoQDVo74Ac49541341",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"current_password\": \"13021991\",\n    \"password\": \"newpassword\",\n    \"password_confirmation\": \"newpassword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/password/update",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "password",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Me",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "12|88YYl0lW8hLSl692lyGMHe98qeUbX5BcnJ2sejUq9ba41400",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/profile/me",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "profile",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "13|arM4rtW89r3L2O49BO4vNiK7Y7tHlAo1IKtitupl41cd7f74",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\" : \"Laurent Gourouvin\",\n    \"email\": \"gourouvin.laurent@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/profile",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "14|YJtplaWdjtSnQfmXNKJbRPIivQYNqZqp2qSfLmadcf773ace",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/profile",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Email",
+      "item": [
+        {
+          "name": "Email verify",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "15|Mec9zPinEjXjnAs03wd1uctw1agOzH1IuRVnjCBZc18d3924",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/email/verify/send",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "email",
+                "verify",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Note",
+      "item": [
+        {
+          "name": "Get note",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "15|Mec9zPinEjXjnAs03wd1uctw1agOzH1IuRVnjCBZc18d3924",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/note",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "note"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create note",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "16|NSV5iRijX2TOhAIbGLi4qhu1WCM7sEJ4YCB7P5ik9b9ca614",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"Une note via postman\",\n    \"tag_id\" : 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/note",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "note"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete note",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "16|NSV5iRijX2TOhAIbGLi4qhu1WCM7sEJ4YCB7P5ik9b9ca614",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://monolithic-app.test/api/note/14",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "note",
+                "14"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tag",
+      "item": [
+        {
+          "name": "Get all tags",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "16|NSV5iRijX2TOhAIbGLi4qhu1WCM7sEJ4YCB7P5ik9b9ca614",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/tag",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "tag"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all tags Copy",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "16|NSV5iRijX2TOhAIbGLi4qhu1WCM7sEJ4YCB7P5ik9b9ca614",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://monolithic-app.test/api/tag",
+              "protocol": "http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "tag"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
