@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\EmailController;
+use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [ProfileController::class, 'updateProfile']);
     Route::delete('profile', [ProfileController::class, 'deleteProfile']);
     Route::post('email/verify/send', [EmailController::class, 'sendVerification']);
+    Route::get('note', [NoteController::class, 'getNotes']);
+    Route::post('note', [NoteController::class, 'createNote']);
+    Route::delete('note/{id}', [NoteController::class, 'deleteNote']);
 });
 
 // Auth Routes
