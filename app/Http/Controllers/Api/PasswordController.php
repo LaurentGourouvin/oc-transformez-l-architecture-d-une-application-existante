@@ -111,7 +111,7 @@ class PasswordController extends Controller
     }
 
     /**
-     * @OA\Post(
+     * @OA\Patch(
      *     path="/api/password/update",
      *     summary="Update password",
      *     tags={"Password"},
