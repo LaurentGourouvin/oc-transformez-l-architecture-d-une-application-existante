@@ -254,7 +254,7 @@
                 }
               ]
             },
-            "method": "POST",
+            "method": "PATCH",
             "header": [
               {
                 "key": "Accept",

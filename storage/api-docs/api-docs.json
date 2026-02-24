@@ -387,12 +387,12 @@
             }
         },
         "/api/password/update": {
-            "post": {
+            "patch": {
                 "tags": [
                     "Password"
                 ],
                 "summary": "Update password",
-                "operationId": "822441fa97260721051951059ab8eac6",
+                "operationId": "8a499c079e4cc34ef18a9313a276550a",
                 "requestBody": {
                     "required": true,
                     "content": {
