@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import useNoteStore from '../../store/noteStore';
 
 export default function NoteList() {
-    const { notes, loading, error, fetchNotes, removeNote } = useNoteStore();
+    const notes = useNoteStore((state) => state.notes);
+    const loading = useNoteStore((state) => state.loading);
+    const error = useNoteStore((state) => state.error);
+    const fetchNotes = useNoteStore((state) => state.fetchNotes);
+    const removeNote = useNoteStore((state) => state.removeNote);
 
     useEffect(() => {
         fetchNotes();
@@ -13,16 +17,13 @@ export default function NoteList() {
 
     return (
         <div>
-            <h2 className="text-lg font-semibold mb-4">Mes notes</h2>
+            <h2>Mes notes</h2>
             {notes.length === 0 && <p>Aucune note.</p>}
             <ul>
                 {notes.map((note) => (
-                    <li key={note.id} className="flex justify-between items-center mb-2">
+                    <li key={note.id}>
                         <span>{note.text}</span>
-                        <button
-                            onClick={() => removeNote(note.id)}
-                            className="text-red-500 text-sm"
-                        >
+                        <button onClick={() => removeNote(note.id)}>
                             Supprimer
                         </button>
                     </li>
