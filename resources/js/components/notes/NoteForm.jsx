@@ -21,27 +21,32 @@ export default function NoteForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
+        <form onSubmit={handleSubmit} className="space-y-2">
+            <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Nouvelle note..."
+                placeholder="Write your note..."
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-lg p-2 bg-transparent text-sm resize-none"
+                rows={3}
                 required
             />
             <select
                 value={tagId}
                 onChange={(e) => setTagId(e.target.value)}
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-lg p-2 bg-transparent text-sm"
                 required
             >
-                <option value="">Sélectionner un tag</option>
+                <option value="">-- Select Tag --</option>
                 {tags.map((tag) => (
-                    <option key={tag.id} value={tag.id}>
-                        {tag.name}
-                    </option>
+                    <option key={tag.id} value={tag.id}>{tag.name}</option>
                 ))}
             </select>
-            <button type="submit">Ajouter</button>
+            <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600"
+            >
+                Add Note
+            </button>
         </form>
     );
 }

@@ -12,23 +12,27 @@ export default function NoteList() {
         fetchNotes();
     }, []);
 
-    if (loading) return <p>Chargement...</p>;
-    if (error) return <p>Erreur : {error}</p>;
+    if (loading) return <p className="text-sm text-zinc-500">Chargement...</p>;
+    if (error) return <p className="text-sm text-red-500">Erreur : {error}</p>;
 
     return (
-        <div>
-            <h2>Mes notes</h2>
-            {notes.length === 0 && <p>Aucune note.</p>}
-            <ul>
-                {notes.map((note) => (
-                    <li key={note.id}>
-                        <span>{note.text}</span>
-                        <button onClick={() => removeNote(note.id)}>
-                            Supprimer
-                        </button>
-                    </li>
-                ))}
-            </ul>
+        <div className="space-y-2">
+            <h2 className="text-xl font-bold">Your Notes</h2>
+            {notes.length === 0 && <p className="text-sm text-zinc-500">Aucune note.</p>}
+            {notes.map((note) => (
+                <div key={note.id} className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-3 flex justify-between items-start">
+                    <div>
+                        <p className="text-sm">{note.text}</p>
+                        <small className="text-zinc-500">Tag: {note.tag?.name ?? '—'}</small>
+                    </div>
+                    <button
+                        onClick={() => removeNote(note.id)}
+                        className="text-red-500 text-sm hover:text-red-600"
+                    >
+                        Delete
+                    </button>
+                </div>
+            ))}
         </div>
     );
 }
