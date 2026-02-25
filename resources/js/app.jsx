@@ -12,11 +12,14 @@ import ResetPasswordForm from "./components/auth/ResetPasswordForm.jsx";
 import VerifyEmail from "./components/auth/VerifyEmail.jsx";
 import VerifyEmailCallback from "./components/auth/VerifyEmailCallback.jsx";
 import ConfirmPassword from "./components/auth/ConfirmPassword.jsx";
+import HomePage from "./components/HomePage.jsx";
 
 function App() {
     return (
         <BrowserRouter basename="/app">
             <Routes>
+                <Route path="/" element={<HomePage />} />
+
                 <Route path="/login" element={
                     <AuthLayout>
                         <LoginForm />
