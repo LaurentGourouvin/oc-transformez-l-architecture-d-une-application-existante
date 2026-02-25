@@ -14,8 +14,13 @@ Route::middleware('guest')->group(function () {
     Volt::route('forgot-password', 'auth.forgot-password')
         ->name('password.request');
 
-    Volt::route('reset-password/{token}', 'auth.reset-password')
-        ->name('password.reset');
+    //Volt::route('reset-password/{token}', 'auth.reset-password')
+    //->name('password.reset');
+
+    Route::get('reset-password/{token}', function (string $token) {
+        $email = request()->get('email');
+        return redirect('/app/reset-password?token=' . $token . '&email=' . urlencode($email));
+    })->name('password.reset');
 
 });
 

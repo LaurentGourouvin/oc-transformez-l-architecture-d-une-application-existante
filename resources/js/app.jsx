@@ -8,6 +8,7 @@ import Settings from './components/settings/Settings';
 import RegisterForm from './components/auth/RegisterForm';
 import AuthLayout from "./components/layouts/AuthLayout.jsx";
 import ForgotPasswordForm from "./components/auth/ForgotPasswordForm.jsx";
+import ResetPasswordForm from "./components/auth/ResetPasswordForm.jsx";
 
 function App() {
     return (
@@ -23,12 +24,16 @@ function App() {
                         <RegisterForm />
                     </AuthLayout>
                 } />
+                <Route path="/reset-password" element={
+                    <AuthLayout>
+                        <ResetPasswordForm />
+                    </AuthLayout>
+                } />
                 <Route path="/forgot-password" element={
                     <AuthLayout>
                         <ForgotPasswordForm />
                     </AuthLayout>
                 } />
-
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
                         <Dashboard />
