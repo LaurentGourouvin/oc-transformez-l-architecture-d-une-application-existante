@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('profile', [ProfileController::class, 'updateProfile']);
     Route::delete('profile', [ProfileController::class, 'deleteProfile']);
     Route::post('email/verify/send', [EmailController::class, 'sendVerification']);
+    Route::get('email/verify/{id}/{hash}', [EmailController::class, 'verify']);
     Route::get('note', [NoteController::class, 'getNotes']);
     Route::post('note', [NoteController::class, 'createNote']);
     Route::delete('note/{id}', [NoteController::class, 'deleteNote']);

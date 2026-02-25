@@ -9,6 +9,8 @@ import RegisterForm from './components/auth/RegisterForm';
 import AuthLayout from "./components/layouts/AuthLayout.jsx";
 import ForgotPasswordForm from "./components/auth/ForgotPasswordForm.jsx";
 import ResetPasswordForm from "./components/auth/ResetPasswordForm.jsx";
+import VerifyEmail from "./components/auth/VerifyEmail.jsx";
+import VerifyEmailCallback from "./components/auth/VerifyEmailCallback.jsx";
 
 function App() {
     return (
@@ -33,6 +35,20 @@ function App() {
                     <AuthLayout>
                         <ForgotPasswordForm />
                     </AuthLayout>
+                } />
+                <Route path="/verify-email" element={
+                    <ProtectedRoute>
+                        <AuthLayout>
+                            <VerifyEmail />
+                        </AuthLayout>
+                    </ProtectedRoute>
+                } />
+                <Route path="/verify-email/:id/:hash" element={
+                    <ProtectedRoute>
+                        <AuthLayout>
+                            <VerifyEmailCallback />
+                        </AuthLayout>
+                    </ProtectedRoute>
                 } />
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
