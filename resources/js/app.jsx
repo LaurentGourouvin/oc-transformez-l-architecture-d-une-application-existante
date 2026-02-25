@@ -6,13 +6,22 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import Settings from './components/settings/Settings';
 import RegisterForm from './components/auth/RegisterForm';
+import AuthLayout from "./components/layouts/AuthLayout.jsx";
 
 function App() {
     return (
         <BrowserRouter basename="/app">
             <Routes>
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/register" element={<RegisterForm />} />
+                <Route path="/login" element={
+                    <AuthLayout>
+                        <LoginForm />
+                    </AuthLayout>
+                } />
+                <Route path="/register" element={
+                    <AuthLayout>
+                        <RegisterForm />
+                    </AuthLayout>
+                } />
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
                         <Dashboard />

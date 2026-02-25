@@ -17,58 +17,79 @@ export default function RegisterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-                <label className="block text-sm font-medium mb-1">Name</label>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                />
+        <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-1">
+                <h1 className="text-xl font-semibold">Create an account</h1>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">Enter your details below to create your account</p>
             </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                />
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Name</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Full name"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
+                        required
+                        autoFocus
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Email address</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="email@example.com"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
+                        required
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Password</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
+                        required
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Confirm password</label>
+                    <input
+                        type="password"
+                        value={passwordConfirmation}
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}
+                        placeholder="Confirm password"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
+                        required
+                    />
+                </div>
+
+                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+                <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 py-2 rounded-lg text-sm font-medium hover:opacity-90"
+                >
+                    {loading ? 'Création...' : 'Create account'}
+                </button>
+            </form>
+
+            <div className="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
+                <span>Already have an account?</span>
+                <Link to="/login" className="underline hover:text-zinc-900 dark:hover:text-white">
+                    Log in
+                </Link>
             </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Password</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Confirm password</label>
-                <input
-                    type="password"
-                    value={passwordConfirmation}
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    className="w-full border rounded px-3 py-2"
-                    required
-                />
-            </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-black text-white py-2 rounded"
-            >
-                {loading ? 'Création...' : "S'inscrire"}
-            </button>
-            <p className="text-center text-sm">
-                Déjà un compte ? <Link to="/login" className="underline">Se connecter</Link>
-            </p>
-        </form>
+        </div>
     );
 }

@@ -20,51 +20,55 @@ export default function PasswordForm() {
     };
 
     return (
-        <div>
-            <h2 className="text-lg font-semibold">Password</h2>
-            <p className="text-sm text-zinc-500 mb-4">Update your password</p>
+        <section className="w-full">
+            <div className="mb-6">
+                <h2 className="text-lg font-semibold">Update password</h2>
+                <p className="text-sm text-zinc-500">Ensure your account is using a long, random password to stay secure</p>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium mb-1">Current password</label>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Current password</label>
                     <input
                         type="password"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
-                        className="w-full border rounded-lg px-3 py-2 bg-zinc-800 border-zinc-700"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
                         required
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium mb-1">New password</label>
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">New password</label>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full border rounded-lg px-3 py-2 bg-zinc-800 border-zinc-700"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
                         required
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium mb-1">Confirm password</label>
+                <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium">Confirm password</label>
                     <input
                         type="password"
                         value={passwordConfirmation}
                         onChange={(e) => setPasswordConfirmation(e.target.value)}
-                        className="w-full border rounded-lg px-3 py-2 bg-zinc-800 border-zinc-700"
+                        className="w-full border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2 text-sm bg-transparent"
                         required
                     />
                 </div>
                 {success && <p className="text-green-500 text-sm">{success}</p>}
                 {error && <p className="text-red-500 text-sm">{error}</p>}
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 py-2 bg-white text-black rounded-lg text-sm"
-                >
-                    Save
-                </button>
+                <div className="flex items-center gap-4">
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg text-sm font-medium hover:opacity-90"
+                    >
+                        Save
+                    </button>
+                </div>
             </form>
-        </div>
+        </section>
     );
 }
