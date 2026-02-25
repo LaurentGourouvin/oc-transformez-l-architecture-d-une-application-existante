@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { login, logout } from '../services/authService';
+import { login, logout, register } from '../services/authService';
 
 const useAuthStore = create((set) => ({
     user: null,
@@ -26,6 +26,18 @@ const useAuthStore = create((set) => ({
             localStorage.removeItem('token');
             set({ user: null, token: null });
             window.location.href = '/app/login';
+        }
+    },
+
+    register: async (name, email, password, password_confirmation) => {
+        set({ loading: true, error: null });
+        try {
+            const response = await register(name, email, password, password_confirmation);
+            localStorage.setItem('token', response.data.token);
+            set({ user: response.data.user, token: response.data.token, loading: false });
+            window.location.href = '/app/login';
+        } catch (error) {
+            set({ error: 'Registration failed', loading: false });
         }
     },
 }));

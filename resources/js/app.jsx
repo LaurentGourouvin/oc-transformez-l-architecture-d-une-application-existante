@@ -5,12 +5,14 @@ import LoginForm from './components/auth/LoginForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Dashboard from './components/Dashboard';
 import Settings from './components/settings/Settings';
+import RegisterForm from './components/auth/RegisterForm';
 
 function App() {
     return (
         <BrowserRouter basename="/app">
             <Routes>
                 <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} />
                 <Route path="/dashboard" element={
                     <ProtectedRoute>
                         <Dashboard />
