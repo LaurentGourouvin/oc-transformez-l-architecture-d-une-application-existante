@@ -11,6 +11,7 @@ import ForgotPasswordForm from "./components/auth/ForgotPasswordForm.jsx";
 import ResetPasswordForm from "./components/auth/ResetPasswordForm.jsx";
 import VerifyEmail from "./components/auth/VerifyEmail.jsx";
 import VerifyEmailCallback from "./components/auth/VerifyEmailCallback.jsx";
+import ConfirmPassword from "./components/auth/ConfirmPassword.jsx";
 
 function App() {
     return (
@@ -35,6 +36,13 @@ function App() {
                     <AuthLayout>
                         <ForgotPasswordForm />
                     </AuthLayout>
+                } />
+                <Route path="/confirm-password" element={
+                    <ProtectedRoute>
+                        <AuthLayout>
+                            <ConfirmPassword />
+                        </AuthLayout>
+                    </ProtectedRoute>
                 } />
                 <Route path="/verify-email" element={
                     <ProtectedRoute>
