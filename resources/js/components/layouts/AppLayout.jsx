@@ -48,6 +48,9 @@ export default function AppLayout({ children }) {
                             <p className="text-xs text-zinc-500 truncate">{user.email}</p>
                         </div>
                     )}
+                    <Link to="/settings" className={`...`}>
+                        Settings
+                    </Link>
                     <button
                         onClick={logout}
                         className="w-full text-left text-sm text-red-500 hover:text-red-600"
