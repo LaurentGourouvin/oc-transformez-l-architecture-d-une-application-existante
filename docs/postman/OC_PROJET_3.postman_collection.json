@@ -416,7 +416,7 @@
       "name": "Email",
       "item": [
         {
-          "name": "Email verify",
+          "name": "Email send notification",
           "request": {
             "auth": {
               "type": "bearer",
@@ -448,6 +448,49 @@
                 "email",
                 "verify",
                 "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Email verify",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "17|FpNZct6CH6aIIitgViOA96W8ApZlV8zrivT4lLSve637bfb1",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "GET http://monolithic-app.test/api/email/verify/11/8bfcf53a796c8135629332db74bc95f1dbb49ef3?expires=1772017032&signature=28739370690b81be8400bd993e27567035bc4c195ffcd3bae5583ca1c7a1389d",
+              "protocol": "GET http",
+              "host": [
+                "monolithic-app",
+                "test"
+              ],
+              "path": [
+                "api",
+                "email",
+                "verify",
+                "11",
+                "8bfcf53a796c8135629332db74bc95f1dbb49ef3"
+              ],
+              "query": [
+                {
+                  "key": "expires",
+                  "value": "1772017032"
+                },
+                {
+                  "key": "signature",
+                  "value": "28739370690b81be8400bd993e27567035bc4c195ffcd3bae5583ca1c7a1389d"
+                }
               ]
             }
           },
